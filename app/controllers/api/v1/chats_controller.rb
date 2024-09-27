@@ -5,7 +5,6 @@ module Api
         before_action :set_chat, only: [:show]
   
         def create
-          return render_not_found('Application') unless @application
   
           @chat = Chat.new(application_token: @application.application_token)
   
@@ -17,16 +16,14 @@ module Api
         end
   
         def index
-          return render_not_found('Application') unless @application
-  
+          
           @chats = Chat.details_by_application_token(@application.application_token)
           render json: @chats.map {|chat| format_chat_response(chat)}
 
         end
   
         def show
-          return render_not_found('Chat') unless @chat
-  
+        
           render json: { number: @chat.chat_number, messages_count: @chat.messages_count }, status: :ok
         end
   
