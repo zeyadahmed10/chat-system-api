@@ -10,7 +10,6 @@ class CreateMessages < ActiveRecord::Migration[7.1]
     end
 
     add_foreign_key :messages, :applications, column: :application_token, primary_key: :application_token
-    add_foreign_key :messages, :chats, column: :chat_number, primary_key: :chat_number
     add_index :messages, [:application_token, :chat_number]
     add_index :messages, [:application_token, :chat_number, :message_number], unique: true
   end

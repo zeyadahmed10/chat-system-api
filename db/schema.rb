@@ -26,8 +26,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_27_121726) do
     t.integer "messages_count", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["application_token"], name: "fk_rails_e72f51c06b"
-    t.index ["chat_number", "application_token"], name: "index_chats_on_chat_number_and_application_token", unique: true
+    t.index ["application_token", "chat_number"], name: "index_chats_on_application_token_and_chat_number", unique: true
+    t.index ["application_token"], name: "index_chats_on_application_token"
   end
 
   create_table "messages", charset: "utf8mb4", force: :cascade do |t|
@@ -39,10 +39,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_27_121726) do
     t.datetime "updated_at", null: false
     t.index ["application_token", "chat_number", "message_number"], name: "idx_on_application_token_chat_number_message_number_51bfd3c604", unique: true
     t.index ["application_token", "chat_number"], name: "index_messages_on_application_token_and_chat_number"
-    t.index ["chat_number"], name: "fk_rails_a34a40b6dd"
   end
 
   add_foreign_key "chats", "applications", column: "application_token", primary_key: "application_token"
   add_foreign_key "messages", "applications", column: "application_token", primary_key: "application_token"
-  add_foreign_key "messages", "chats", column: "chat_number", primary_key: "chat_number"
 end

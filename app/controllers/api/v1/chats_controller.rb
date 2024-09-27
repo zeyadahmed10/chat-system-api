@@ -38,7 +38,7 @@ module Api
         end
   
         def set_chat
-          @chat = Chat.find_by(chat_number: params[:chat_number], application_token: @application.application_token)
+          @chat = Chat.find_by(application_token: @application.application_token, chat_number: params[:chat_number])
           render_not_found('Chat') unless @chat
         end
   
