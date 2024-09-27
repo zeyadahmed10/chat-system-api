@@ -3,3 +3,12 @@
   - default
   - chats
   - messages
+:redis:
+  :timeout: 10
+
+
+:scheduler:
+  :schedule:
+    update_counts_worker:
+      cron: "0 * * * *" # Runs every hour
+      class: "UpdateCountsWorker"
