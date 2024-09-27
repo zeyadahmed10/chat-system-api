@@ -5,7 +5,7 @@ class Chat < ApplicationRecord
   
   #custom method get the value from indexing the application_token
   def self.details_by_application_token(application_token)
-    select(:chat_number, :messages_count, :created_at, :updated_at)
+    select(:application_token, :chat_number, :messages_count)
       .where(application_token: application_token)
   end
 end

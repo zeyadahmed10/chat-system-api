@@ -8,11 +8,14 @@ module Api
         @message = Message.new(application_token: @chat.application_token,
                                chat_number: @chat.chat_number,
                                body: message_params[:body])
-        if @message.save
-          render json: format_message_response(@message), status: :created
-        else
+        unless @message.valid?
           render json: { errors: @message.errors.full_messages }, status: :unprocessable_entity
+          return 
         end
+        message_number = get_next_message_number
+        MessageCreationWorker.perform_async('save', @chat.application_token, @chat.chat_number, message_number, message_params[:body])
+        @message.message_number = message_number
+        render json: format_message_response(@message), status: :created
       end
 
       def index
@@ -25,11 +28,13 @@ module Api
       end
 
       def update
-        if @message.update(message_params)
-          render json: format_message_response(@message), status: :ok
-        else
+        @message.body = message_params[:body]
+        unless @message.valid?
           render json: { errors: @message.errors.full_messages }, status: :unprocessable_entity
+          return
         end
+        MessageCreationWorker.perform_async('update' ,@message.application_token, @message.chat_number, @message.message_number, message_params[:body])
+        render json: format_message_response(@message), status: :ok
       end
 
       private
@@ -64,6 +69,10 @@ module Api
           message_number: message.message_number,
           body: message.body
         }
+      end
+
+      def get_next_message_number
+        return $redis.incr("message_number_counter:#{@message.application_token}:#{@message.chat_number}")
       end 
     end
   end
