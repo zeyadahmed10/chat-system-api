@@ -15,6 +15,6 @@ class Chat < ApplicationRecord
 
   def set_chat_number
     return if self.chat_number.present? #preventing updating the chat_number
-    self.chat_number = (Chat.where(application_token: application_token).maximum(:chat_number) || 0) + 1
+    self.chat_number = $redis.incr("chat_number_counter:#{self.application_token}")
   end
 end

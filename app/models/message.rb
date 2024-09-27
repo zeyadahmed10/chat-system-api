@@ -11,6 +11,6 @@ class Message < ApplicationRecord
 
   def set_message_number
     return if self.message_number.present? #preventing updating the chat_number
-    self.message_number = (Message.where(application_token: application_token, chat_number: chat_number).maximum(:message_number) || 0) + 1
+    self.message_number = $redis.incr("message_number_counter:#{application_token}:#{chat_number}")
   end
 end
