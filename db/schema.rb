@@ -23,7 +23,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_27_121726) do
   create_table "chats", charset: "utf8mb4", force: :cascade do |t|
     t.integer "chat_number", null: false
     t.string "application_token", null: false
-    t.integer "message_count", default: 0, null: false
+    t.integer "messages_count", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["application_token"], name: "fk_rails_e72f51c06b"

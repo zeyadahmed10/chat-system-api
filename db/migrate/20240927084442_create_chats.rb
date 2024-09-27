@@ -3,7 +3,7 @@ class CreateChats < ActiveRecord::Migration[7.1]
     create_table :chats do |t|
       t.integer :chat_number, null: false
       t.string :application_token, null: false
-      t.integer :message_count, default: 0, null: false
+      t.integer :messages_count, default: 0, null: false
 
       t.timestamps
     end
