@@ -1,3 +1,11 @@
+# Configure the Elasticsearch client with retry logic
+Elasticsearch::Model.client = Elasticsearch::Client.new(
+  log: true,
+  host: ENV["ES_HOST"] || 'localhost',
+  retry_on_failure: 5
+)
+
+# After initialization block to check and create the index
 Rails.application.config.after_initialize do
   if defined?(Elasticsearch::Model)
     unless Message.__elasticsearch__.index_exists?
