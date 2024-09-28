@@ -4,6 +4,8 @@ ruby "3.3.3"
 gem "redis", "~> 5.0"
 gem "sidekiq", "~> 7.0"
 gem 'sidekiq-scheduler', '~> 5.0'
+gem 'elasticsearch-rails', '~> 7.2'
+gem 'elasticsearch-model', '~> 7.2'
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.4"
 

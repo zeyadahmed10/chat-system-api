@@ -1,9 +1,14 @@
 module Api
   module V1
     class MessagesController < ApplicationController
-      before_action :set_chat, only: [:create, :index, :show, :update]
+      before_action :set_chat, only: [:create, :index, :show, :update, :search]
       before_action :find_message, only: [:show, :update]
 
+      def search
+        @messages = Message.search_elastic(@chat.application_token, @chat.chat_number, params[:query])
+        render json: @messages.map { |message| format_message_response(message) }
+      end
+      
       def create
         @message = Message.new(application_token: @chat.application_token,
                                chat_number: @chat.chat_number,
