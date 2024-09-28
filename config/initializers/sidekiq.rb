@@ -1,7 +1,7 @@
 require 'sidekiq'
 require 'sidekiq-scheduler'
 
-redis_url = ENV['REDIS_HOST'] || 'redis://localhost'
+redis_url = 'redis://'+ENV['REDIS_HOST'] || 'redis://localhost'
 
 Sidekiq.configure_server do |config|
   config.redis = { url: redis_url, network_timeout: 5, reconnect_attempts: 3 }
