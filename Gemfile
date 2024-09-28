@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "3.3.3"
+ruby "3.3.4"
 gem "redis", "~> 5.0"
 gem "sidekiq", "~> 7.0"
 gem 'sidekiq-scheduler', '~> 5.0'

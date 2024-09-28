@@ -1,8 +1,27 @@
 #!/bin/bash -e
 
+# Remove a potentially pre-existing server.pid for Rails.
+rm -f /rails/tmp/pids/server.pid
+
+# Wait for MySQL to be ready
+until mysql -h"$MYSQL_HOST" -u"$MYSQL_USER" -p"$MYSQL_PASSWORD" -e 'SELECT 1'; do
+  >&2 echo "MySQL is unavailable - sleeping"
+  sleep 1
+done
+
+# Wait for Elasticsearch to be ready
+until curl -s http://"$ES_HOST":9200/_cluster/health | grep -q '"status":"green"'; do
+  >&2 echo "Elasticsearch is unavailable - sleeping"
+  sleep 1
+done
+
 # If running the rails server then create or migrate existing database
 if [ "${1}" == "./bin/rails" ] && [ "${2}" == "server" ]; then
   ./bin/rails db:prepare
 fi
+
+# Start the Rails server and Sidekiq
+./bin/rails server -b 0.0.0.0 &
+bundle exec sidekiq
 
 exec "${@}"
