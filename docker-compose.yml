@@ -62,7 +62,7 @@ services:
 
   app:
     build: .
-    command:  sh -c "sh healthCheck.sh elasticsearch:9200 && bundle exec rails db:prepare && bundle exec rails s -p 3000 -b '0.0.0.0' && bundle exec sidekiq"
+    command:  sh -c "sh healthCheck.sh elasticsearch:9200 && bundle exec rails db:prepare && bundle exec rails s -p 3000 -b '0.0.0.0' & bundle exec sidekiq"
     environment:
       MYSQL_HOST: db
       MYSQL_USER: root
