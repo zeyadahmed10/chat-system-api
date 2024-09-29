@@ -23,9 +23,14 @@ This project is a chat system built as part of the Instabug Backend Challenge. T
     ```
 
 3. **Run Docker Compose**:
-    - Start the application using Docker Compose:
+    - Start the application using Docker Compose: (NOTE: IF YOU ARE ON ARM64 (eg Mac m1, m2) don't use this command
     ```sh
     docker-compose up -d
+    ```
+
+    - (**FOR ARM64 (Mac M1, Mac M2)**)Start the application using Docker Compose: (NOTE: IF YOU ARE ON ARM64 (eg Mac m1, m2) don't use this command
+    ```sh
+    docker-compose -f docker-compose-arm.yml up -d
     ```
 
 4. **Access the Application**:
