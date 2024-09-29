@@ -1,0 +1,1 @@
+docker-compose down && docker-compose down -v && docker rmi chat-system-api-app && docker-compose up -d
