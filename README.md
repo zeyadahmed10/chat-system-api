@@ -63,7 +63,7 @@ For detailed documentation and (request, response) examples please check [Chat-S
     - **Get Messages**: `GET localhost:3001/api/v1/applications/:application_token/chats/:chat_number/messages`
     - **Get Message**: `GET localhost:3001/api/v1/applications/:application_token/chats/:chat_number/messages/:message_number`
     - **Get Message**: `PUT localhost:3001/api/v1/applications/:application_token/chats/:chat_number/messages/:message_number`
-    - **Search Messages**: `GET localhost:3001/api/v1/applications/:application_token/chats/:chat_number/messages/search?query=search_term`
+    - **Search Messages**: `GET localhost:3001/api/v1/applications/:application_token/chats/:chat_number/messages/search?query=:search_term`
 
 ---
 
