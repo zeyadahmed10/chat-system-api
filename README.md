@@ -41,7 +41,7 @@ This project is a chat system built as part of the Instabug Backend Challenge. T
 ## API Documentation
 
 ### Endpoints
-For detailed documentation and (request, response) examples please check [Chat-system-api Documentation](test)
+For detailed documentation and (request, response) examples please check [Chat-system-api Documentation](https://documenter.getpostman.com/view/23987687/2sAXqzWdJt)
 - **Applications**:
     - **Create Application**: `POST /api/v1/applications`
     - **Update Application**: `PUT /api/v1/applications/:application_token`
