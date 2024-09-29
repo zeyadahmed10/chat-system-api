@@ -1,0 +1,65 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    platform: linux/arm64
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: chat_system_development
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - backend
+
+  redis:
+    image: redis:7.2-alpine
+    platform: linux/arm64
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - backend
+    command: redis-server --appendonly yes
+
+  elasticsearch:
+    image: elasticsearch:7.17.24
+    platform: linux/arm64
+    environment:
+      - discovery.type=single-node
+    ports:
+      - "9200:9200"
+    volumes:
+      - es_data:/usr/share/elasticsearch/data
+    networks:
+      - backend
+
+  app:
+    build: .
+    command: sh -c "sh healthCheck.sh elasticsearch:9200 && sh initDB.sh && sh initES.sh && (bundle exec rails s -p 3000 -b '0.0.0.0' & bundle exec sidekiq)"
+    environment:
+      MYSQL_HOST: db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
+      REDIS_HOST: redis
+      ES_HOST: elasticsearch
+    ports:
+      - "3001:3000"
+    depends_on:
+      - db
+      - redis
+      - elasticsearch
+    networks:
+      - backend
+
+volumes:
+  db_data:
+  redis_data:
+  es_data:
+
+networks:
+  backend:
+    driver: bridge
