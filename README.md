@@ -35,7 +35,7 @@ This project is a chat system built as part of the Instabug Backend Challenge. T
 
 4. **Access the Application**:
    `NOTE: Wait for full boot up before accessing the application`
-    - The application will be running on port 3001. You can access it via `http://localhost:3001`.
+    - The application will be running on port **3001**. You can access it via **`http://localhost:3001`**.
 
 6. **Stopping the Application**:
     - To stop the application, run:
@@ -48,22 +48,22 @@ This project is a chat system built as part of the Instabug Backend Challenge. T
 ### Endpoints
 For detailed documentation and (request, response) examples please check [Chat-System-API Documentation](https://documenter.getpostman.com/view/23987687/2sAXqzWdJt)
 - **Applications**:
-    - **Create Application**: `POST /api/v1/applications`
-    - **Update Application**: `PUT /api/v1/applications/:application_token`
-    - **Get Application**: `GET /api/v1/applications/:application_token`
-    - **Get Applications**: `GET /api/v1/applications/`
+    - **Create Application**: `POST localhost:3001/api/v1/applications`
+    - **Update Application**: `PUT localhost:3001/api/v1/applications/:application_token`
+    - **Get Application**: `GET localhost:3001/api/v1/applications/:application_token`
+    - **Get Applications**: `GET localhost:3001/api/v1/applications/`
 
 - **Chats**:
-    - **Create Chat**: `POST /api/v1/applications/:application_token/chats`
-    - **Get Chats**: `GET /api/v1/applications/:application_token/chats`
-    - **Get Chat**: `GET /api/v1/applications/:application_token/chats/:chat_number`
+    - **Create Chat**: `POST localhost:3001/api/v1/applications/:application_token/chats`
+    - **Get Chats**: `GET localhost:3001/api/v1/applications/:application_token/chats`
+    - **Get Chat**: `GET localhost:3001/api/v1/applications/:application_token/chats/:chat_number`
 
 - **Messages**:
-    - **Create Message**: `POST /api/v1/applications/:application_token/chats/:chat_number/messages`
-    - **Get Messages**: `GET /api/v1/applications/:application_token/chats/:chat_number/messages`
-    - **Get Message**: `GET /api/v1/applications/:application_token/chats/:chat_number/messages/:message_number`
-    - **Get Message**: `PUT /api/v1/applications/:application_token/chats/:chat_number/messages/:message_number`
-    - **Search Messages**: `GET /api/v1/applications/:application_token/chats/:chat_number/messages/search?query=search_term`
+    - **Create Message**: `POST localhost:3001/api/v1/applications/:application_token/chats/:chat_number/messages`
+    - **Get Messages**: `GET localhost:3001/api/v1/applications/:application_token/chats/:chat_number/messages`
+    - **Get Message**: `GET localhost:3001/api/v1/applications/:application_token/chats/:chat_number/messages/:message_number`
+    - **Get Message**: `PUT localhost:3001/api/v1/applications/:application_token/chats/:chat_number/messages/:message_number`
+    - **Search Messages**: `GET localhost:3001/api/v1/applications/:application_token/chats/:chat_number/messages/search?query=search_term`
 
 ---
 
