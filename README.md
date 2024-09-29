@@ -23,12 +23,12 @@ This project is a chat system built as part of the Instabug Backend Challenge. T
     ```
 
 3. **Run Docker Compose**:
-    - Start the application using Docker Compose: (NOTE: IF YOU ARE ON ARM64 (eg Mac m1, m2) don't use this command
+    - Start the application using Docker Compose for amd64: `NOTE: This command for amd64 (e.g. windows, linux, mac with intel processor)`
     ```sh
     docker-compose up -d
     ```
 
-    - (**FOR ARM64 (Mac M1, Mac M2)**)Start the application using Docker Compose: (NOTE: IF YOU ARE ON ARM64 (eg Mac m1, m2) don't use this command
+    -  Start the application using Docker Compose for arm64: `NOTE: This command for arm64 (e.g. Mac with sillcon chips M1 and M2)`
     ```sh
     docker-compose -f docker-compose-arm.yml up -d
     ```
