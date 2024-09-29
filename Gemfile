@@ -6,6 +6,10 @@ gem "sidekiq", "~> 7.0"
 gem 'sidekiq-scheduler', '~> 5.0'
 gem 'elasticsearch-rails', '~> 7.2'
 gem 'elasticsearch-model', '~> 7.2'
+group :development, :test do
+  gem 'rspec-rails', '~> 5.0'
+end
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.4"
 
