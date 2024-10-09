@@ -10,9 +10,9 @@ class Application < ApplicationRecord
 
   def generate_unique_token
     return if self.application_token.present? #preventing to update the application token
-    loop do
-      self.application_token = "#{SecureRandom.hex(8)}#{Time.now.to_i}"
-      break unless Application.exists?(application_token: application_token)
-    end
+    # loop do
+    #   break unless Application.exists?(application_token: application_token)
+    # end
+    self.application_token = "#{SecureRandom.hex(8)}#{Time.now.to_i}"
   end
 end
