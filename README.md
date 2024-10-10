@@ -1,4 +1,4 @@
-# Instabug Backend Challenge (Chat System API)
+# Chat System API
 
 ## Introduction
 This project is a chat system built as part of the Instabug Backend Challenge. The system allows creating new applications, each identified by a unique token, and supports multiple chats and messages within each application. The API is built using Ruby on Rails, with MySQL as the main datastore, ElasticSearch for message searching, Redis for handling race conditions, and Sidekiq for background job processing.
